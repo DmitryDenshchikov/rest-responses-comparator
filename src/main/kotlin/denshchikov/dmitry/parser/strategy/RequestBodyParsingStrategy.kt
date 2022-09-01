@@ -1,0 +1,3 @@
+package denshchikov.dmitry.parser.strategy
+
+class RequestBodyParsingStrategy : SimpleCliArgumentParsingStrategy
