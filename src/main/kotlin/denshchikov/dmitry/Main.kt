@@ -10,7 +10,6 @@ import org.http4k.core.Method.GET
 import org.http4k.core.Method.POST
 import org.http4k.core.Response
 
-
 fun main(args: Array<String>) {
     val argsMap = CliArgumentsParser(CliArgumentParsingStrategiesRegistry()).parse(args)
     val requestType = Method.valueOf(argsMap.getValue(REQUEST_TYPE) as String)

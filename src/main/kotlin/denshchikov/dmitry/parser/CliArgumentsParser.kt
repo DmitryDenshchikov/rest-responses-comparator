@@ -21,9 +21,9 @@ class CliArgumentsParser(cliArgumentParsingStrategiesRegistry: CliArgumentParsin
         }
 
         for (arg in args) {
-            val keyValSeparator = arg.indexOf(keyValSeparator)
-            val argName = CliArgument.getEnumValue(arg.substring(argPrefix.length, keyValSeparator))
-            val argValue = arg.substring(keyValSeparator + 1)
+            val indexOfKeyValSeparator = arg.indexOf(keyValSeparator)
+            val argName = CliArgument.getEnumValue(arg.substring(argPrefix.length, indexOfKeyValSeparator))
+            val argValue = arg.substring(indexOfKeyValSeparator + 1)
 
             val parsedValue = parsingStrategiesRegistry.getStrategy(argName).parse(argValue)
 

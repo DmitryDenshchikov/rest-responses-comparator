@@ -8,7 +8,7 @@ group = "org.example"
 version = "1.0-SNAPSHOT"
 
 val http4kVersion = "4.30.2.1"
-val gsonVersion = "2.9.1"
+val jacksonVersion = "2.13.4"
 
 repositories {
     mavenCentral()
@@ -19,7 +19,7 @@ dependencies {
     implementation("org.http4k:http4k-core")
     implementation("org.http4k:http4k-client-apache")
 
-    implementation("com.google.code.gson:gson:$gsonVersion")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
 
     testImplementation(kotlin("test"))
 }
