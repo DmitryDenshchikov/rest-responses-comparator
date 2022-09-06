@@ -4,7 +4,7 @@ enum class CliArgument(val cliName: String) {
 
     URLS("urls"),
     REQUEST_TYPE("request-type"),
-    REQUEST_BODY("request-type"),
+    REQUEST_BODY("request-body"),
     FIELDS_TO_EXCLUDE("fields-to-exclude");
 
     companion object {

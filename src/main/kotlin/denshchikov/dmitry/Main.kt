@@ -1,5 +1,7 @@
 package denshchikov.dmitry
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import denshchikov.dmitry.comparator.ResponseComparator
 import denshchikov.dmitry.domain.CliArgument.*
 import denshchikov.dmitry.invoker.RequestInvoker
 import denshchikov.dmitry.parser.CliArgumentsParser
@@ -25,10 +27,23 @@ fun main(args: Array<String>) {
         }
     }
 
+    val objectMapper = ObjectMapper()
+    val fieldsToIgnore = mutableListOf<String>()
+    if (argsMap.containsKey(FIELDS_TO_EXCLUDE)) {
+        fieldsToIgnore.addAll(argsMap.getValue(FIELDS_TO_EXCLUDE) as List<String>)
+    }
+    val responseComparator = ResponseComparator(objectMapper, fieldsToIgnore)
+
     for (i in 0 until responses.size) {
         for (j in i + 1 until responses.size) {
-            println(responses[i].body == responses[j].body)
+            if (!responseComparator.compare(responses[i], responses[j])) {
+                println("Next responses are not equal: " +
+                        "\r\n ${responses[i]}" +
+                        "\r\n ${responses[j]}")
+            }
         }
     }
+
+    println("Verifying has been done. If there are no any warnings above, then responses are equal")
 
 }
